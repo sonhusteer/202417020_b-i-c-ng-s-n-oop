@@ -1,7 +1,7 @@
 package Lab01;
 import javax.swing.JOptionPane;
 
-public class sumty  {
+public class bai5  {
     public static void main(String args[]){
         String a;
         a=JOptionPane.showInputDialog(null,"a= ");
