@@ -1,0 +1,22 @@
+1. Về việc sử dụng Accessor và Mutator (Getters/Setters)
+Câu hỏi: Khi nào nên sử dụng các phương thức accessor (getter)? Tại sao trong bài này chúng ta loại bỏ các hàm setter?
+
+Trả lời: * Accessor (Getter) nên được sử dụng khi chúng ta muốn các lớp bên ngoài có thể đọc được giá trị của các thuộc tính private mà không làm phá vỡ tính đóng gói (Encapsulation).
+
+Trong bài Lab này, chúng ta loại bỏ các Mutator (Setter) vì dựa trên yêu cầu nghiệp vụ (Business Logic), thông tin của một đĩa DVD (như tiêu đề, giá tiền, đạo diễn) sau khi đã được khởi tạo và thêm vào giỏ hàng thì không cần phải thay đổi nữa. Việc loại bỏ Setter giúp đảm bảo tính toàn vẹn của dữ liệu và hạn chế các lỗi phát sinh không đáng có.
+
+2. Về nạp chồng Constructor (Constructor Overloading)
+Câu hỏi: Nếu bạn tạo một constructor nhận tham số String title, sau đó tạo thêm một cái nhận String category, Java có cho phép không?
+
+Trả lời: * KHÔNG. Trình biên dịch Java sẽ báo lỗi trùng lặp (Duplicate method).
+
+Lý do: Java phân biệt các phương thức/constructor nạp chồng dựa trên Signature (bao gồm: số lượng tham số, kiểu dữ liệu của tham số và thứ tự của chúng). Nó không quan tâm đến tên biến (title hay category). Vì cả hai constructor đều chỉ có một tham số duy nhất với kiểu dữ liệu là String, Java sẽ không biết phải gọi cái nào khi bạn khởi tạo đối tượng.
+
+3. Tóm tắt bài đọc "Why getter and setter methods are evil"
+Nội dung chính:
+
+Vi phạm tính đóng gói: Việc tự động tạo Getter/Setter cho mọi thuộc tính thực chất là biến các biến private thành public một cách gián tiếp, làm lộ cấu trúc dữ liệu bên trong của đối tượng.
+
+Gây ra sự phụ thuộc (High Coupling): Khi cấu trúc dữ liệu bên trong class thay đổi, tất cả các class khác đang sử dụng Getter/Setter đó cũng phải sửa đổi theo, khiến code trở nên mong manh và khó bảo trì.
+
+Nguyên tắc "Tell, Don't Ask": Thay vì lấy dữ liệu từ đối tượng ra để tự xử lý (Ask), hãy yêu cầu đối tượng đó tự thực hiện hành động thông qua các phương thức nghiệp vụ của chính nó (Tell).
