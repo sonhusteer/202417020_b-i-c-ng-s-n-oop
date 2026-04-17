@@ -42,5 +42,52 @@ public class Cart {
         }
         return sum;
     }
+   
+public void addDigitalVideoDisc(DigitalVideoDisc... dvds) {
+    for (DigitalVideoDisc dvd : dvds) {
+        addDigitalVideoDisc(dvd);
+    }
+}
+public void addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
+    addDigitalVideoDisc(dvd1);
+    addDigitalVideoDisc(dvd2);
+}
+public void print() {
+    System.out.println("***********************CART***********************");
+    System.out.println("Ordered Items:");
+    
+    for (int i = 0; i < qtyOrdered; i++) {
+        // Sử dụng phương thức toString() đã viết ở Bước 1
+        System.out.println((i + 1) + ". " + itemsOrdered[i].toString());
+    }
+    
+    System.out.println("Total cost: " + totalCost() + " $");
+    System.out.println("***************************************************");
+}
+public void searchById(int id) {
+    boolean found = false;
+    for (int i = 0; i < qtyOrdered; i++) {
+        if (itemsOrdered[i].getId() == id) {
+            System.out.println("Found match for ID " + id + ": " + itemsOrdered[i].toString());
+            found = true;
+            break; // Vì ID là duy nhất nên có thể dừng ngay khi tìm thấy
+        }
+    }
+    if (!found) {
+        System.out.println("No DVD found with ID: " + id); 
+    }
+}
+public void searchByTitle(String title) {
+    boolean found = false;
+    for (int i = 0; i < qtyOrdered; i++) {
+        if (itemsOrdered[i].isMatch(title)) {
+            System.out.println("Found match for title '" + title + "': " + itemsOrdered[i].toString());
+            found = true;
+        }
+    }
+    if (!found) {
+        System.out.println("No DVD found with title containing: " + title); 
+    }
+}
 }
 
