@@ -1,0 +1,21 @@
+ANSWERS FOR LAB 01 - JAVA BASICS
+
+Exercise 2.2.1: HelloWorld.java
+- Question: What happens if you change the class name different from the file name?
+- Answer: Java will throw a compilation error. The public class name must match the file name exactly.
+
+Exercise 2.2.2: FirstDialog.java
+- Question: What is the purpose of System.exit(0)?
+- Answer: It terminates the current Java Virtual Machine (JVM). The status code '0' indicates a successful termination.
+
+Exercise 2.2.3: HelloNameDialog.java
+- Question: What does JOptionPane.showInputDialog return?
+- Answer: It returns a String containing the text entered by the user.
+
+Exercise 2.2.4: ShowTwoNumbers.java
+- Question: Why do we need Double.parseDouble()?
+- Answer: Because showInputDialog returns a String, we must convert it to a double type to perform mathematical calculations.
+
+Exercise 6.1: ChoosingOption.java
+- Question: How to customize the options (e.g., Yes/No/Cancel)?
+- Answer: We can use different constants from JOptionPane like YES_NO_OPTION or provide an array of objects to the showOptionDialog method.
