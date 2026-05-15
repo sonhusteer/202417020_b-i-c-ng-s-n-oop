@@ -1,0 +1,7 @@
+Câu trả lời cho Mục 12 về Comparable và Comparator:
+
+1. Comparable là một interface trong Java cho phép các object tự so sánh với nhau thông qua phương thức compareTo(). Nó được sử dụng khi một lớp muốn định nghĩa thứ tự tự nhiên của các instance của nó.
+
+2. Comparator là một interface cho phép định nghĩa cách so sánh giữa các object từ bên ngoài, không phải trong chính lớp đó. Nó hữu ích khi muốn sắp xếp theo nhiều tiêu chí khác nhau mà không thay đổi lớp gốc.
+
+Trong dự án AIMS, chúng ta sử dụng Comparator để sắp xếp các Media trong Cart theo title rồi cost (COMPARE_BY_TITLE_COST) hoặc cost rồi title (COMPARE_BY_COST_TITLE). Điều này cho phép linh hoạt trong việc sắp xếp mà không cần thay đổi lớp Media.

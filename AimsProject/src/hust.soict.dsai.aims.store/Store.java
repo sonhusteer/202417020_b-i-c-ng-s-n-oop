@@ -1,33 +1,32 @@
-public class Store {
-    // Mảng chứa các DVD có trong cửa hàng
-    private DigitalVideoDisc itemsInStore[] = new DigitalVideoDisc[100]; 
-    private int qtyInStore = 0;
+package hust.soict.dsai.aims.store;
 
-    // Phương thức thêm DVD vào kho
-    public void addDVD(DigitalVideoDisc dvd) {
-        if (qtyInStore < itemsInStore.length) {
-            itemsInStore[qtyInStore] = dvd;
-            qtyInStore++;
-            System.out.println("DVD " + dvd.getTitle() + " đã được thêm vào kho.");
+import hust.soict.dsai.aims.media.Media;
+import java.util.ArrayList;
+
+public class Store {
+    public static final int MAX_ITEMS_IN_STORE = 100;
+    private ArrayList<Media> itemsInStore = new ArrayList<Media>();
+
+    public ArrayList<Media> getItemsInStore() {
+        return itemsInStore;
+    }
+
+    // Phương thức thêm media vào kho
+    public void addMedia(Media media) {
+        if (itemsInStore.size() < MAX_ITEMS_IN_STORE) {
+            itemsInStore.add(media);
+            System.out.println("Media " + media.getTitle() + " đã được thêm vào kho.");
         } else {
-            System.out.println("Kho hàng đã đầy, không thể thêm đĩa!");
+            System.out.println("Kho hàng đã đầy, không thể thêm!");
         }
     }
 
-    // Phương thức xóa DVD khỏi kho
-    public void removeDVD(DigitalVideoDisc dvd) {
-        for (int i = 0; i < qtyInStore; i++) {
-            if (itemsInStore[i].equals(dvd)) {
-                // Dịch chuyển các phần tử phía sau lên trước
-                for (int j = i; j < qtyInStore - 1; j++) {
-                    itemsInStore[j] = itemsInStore[j + 1];
-                }
-                itemsInStore[qtyInStore - 1] = null;
-                qtyInStore--;
-                System.out.println("DVD " + dvd.getTitle() + " đã được xóa khỏi kho.");
-                return;
-            }
+    // Phương thức xóa media khỏi kho
+    public void removeMedia(Media media) {
+        if (itemsInStore.remove(media)) {
+            System.out.println("Media " + media.getTitle() + " đã được xóa khỏi kho.");
+        } else {
+            System.out.println("Không tìm thấy media " + media.getTitle() + " trong kho.");
         }
-        System.out.println("Không tìm thấy DVD " + dvd.getTitle() + " trong kho.");
     }
 }
