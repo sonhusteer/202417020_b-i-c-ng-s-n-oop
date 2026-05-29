@@ -52,16 +52,13 @@ public abstract class Media {
         this.cost = cost;
     }
     @Override
-public boolean equals(Object o) {
-    if (o instanceof Media) {
-        try {
-            return ((Media) o).getTitle().equals(this.title);
-        } catch (NullPointerException e) {
-            return false;
-        }
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (!(obj instanceof Media)) return false;
+        Media other = (Media) obj;
+        if (this.title == null) return other.getTitle() == null;
+        return this.title.equals(other.getTitle());
     }
-    return false;
-}
 
     public boolean isMatch(String title) {
         return this.title.toLowerCase().contains(title.toLowerCase());
@@ -69,5 +66,4 @@ public boolean equals(Object o) {
 
 public static final Comparator<Media> COMPARE_BY_TITLE_COST = new MediaComparatorByTitleCost();
 public static final Comparator<Media> COMPARE_BY_COST_TITLE = new MediaComparatorByCostTitle();
-    // TODO: Constructor và Getter/Setter sẽ thêm ở bước dưới
 }
