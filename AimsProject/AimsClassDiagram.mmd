@@ -1,0 +1,90 @@
+classDiagram
+    class Media {
+      <<abstract>>
+      - int id
+      - String title
+      - String category
+      - float cost
+      + int getId()
+      + void setId(int id)
+      + String getTitle()
+      + void setTitle(String title)
+      + String getCategory()
+      + void setCategory(String category)
+      + float getCost()
+      + void setCost(float cost)
+      + boolean equals(Object o)
+      + boolean isMatch(String title)
+    }
+
+    class Playable {
+      <<interface>>
+      + void play()
+    }
+
+    class Disc {
+      - String director
+      - int length
+      + String getDirector()
+      + void setDirector(String director)
+      + int getLength()
+      + void setLength(int length)
+    }
+
+    class DigitalVideoDisc {
+      + DigitalVideoDisc(String title)
+      + DigitalVideoDisc(String title, String category, float cost)
+      + DigitalVideoDisc(String title, String category, String director, float cost)
+      + DigitalVideoDisc(String title, String category, String director, int length, float cost)
+      + void play()
+    }
+
+    class CompactDisc {
+      - String artist
+      - List<Track> tracks
+      + String getArtist()
+      + void addTrack(Track track)
+      + void removeTrack(Track track)
+      + int getLength()
+      + void play()
+    }
+
+    class Book {
+      - List<String> authors
+      + void addAuthor(String author)
+      + void removeAuthor(String author)
+    }
+
+    class Track {
+      - String title
+      - int length
+      + String getTitle()
+      + int getLength()
+      + void play()
+    }
+
+    class Cart {
+      - ArrayList<Media> itemsOrdered
+      + void addMedia(Media media)
+      + void removeMedia(Media media)
+      + float totalCost()
+      + void print()
+      + void searchById(int id)
+      + void searchByTitle(String title)
+    }
+
+    class Store {
+      - ArrayList<Media> itemsInStore
+      + void addMedia(Media media)
+      + void removeMedia(Media media)
+    }
+
+    Media <|-- Disc
+    Disc <|-- DigitalVideoDisc
+    Disc <|-- CompactDisc
+    Media <|-- Book
+    Playable <|.. DigitalVideoDisc
+    Playable <|.. CompactDisc
+    Playable <|.. Track
+    Cart o-- Media : itemsOrdered
+    Store o-- Media : itemsInStore

@@ -1,5 +1,7 @@
 package hust.soict.dsai.aims.media;
 
+import hust.soict.dsai.aims.exception.PlayerException;
+
 // DVD nên kế thừa Disc (Disc chứa director và length)
 public class DigitalVideoDisc extends Disc implements Playable {
 
@@ -25,7 +27,10 @@ public class DigitalVideoDisc extends Disc implements Playable {
 
     // 3. Cài đặt phương thức play() từ interface Playable [cite: 156, 158]
     @Override
-    public void play() {
+    public void play() throws PlayerException {
+        if (this.getLength() <= 0) {
+            throw new PlayerException("ERROR: Media length is non-positive!");
+        }
         System.out.println("Playing DVD: " + this.getTitle());
         System.out.println("DVD length: " + this.getLength());
     }

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XMI xmi.version="2.1" xmlns:uml="http://www.omg.org/spec/UML/20090901">
+  <uml:Model xmi:id="model_1" name="AimsClassDiagram">
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="type_String" name="String"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="type_int" name="int"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="type_float" name="float"/>
+    <packagedElement xmi:type="uml:PrimitiveType" xmi:id="type_boolean" name="boolean"/>
+
+    <packagedElement xmi:type="uml:Interface" xmi:id="interface_Playable" name="Playable">
+      <ownedOperation xmi:id="op_Playable_play" name="play" visibility="public"/>
+    </packagedElement>
+
+    <packagedElement xmi:type="uml:Class" xmi:id="class_Media" name="Media" isAbstract="true">
+      <ownedAttribute xmi:id="attr_Media_id" name="id" type="type_int" visibility="private"/>
+      <ownedAttribute xmi:id="attr_Media_title" name="title" type="type_String" visibility="private"/>
+      <ownedAttribute xmi:id="attr_Media_category" name="category" type="type_String" visibility="private"/>
+      <ownedAttribute xmi:id="attr_Media_cost" name="cost" type="type_float" visibility="private"/>
+      <ownedOperation xmi:id="op_Media_getId" name="getId" visibility="public"/>
+      <ownedOperation xmi:id="op_Media_setId" name="setId" visibility="public"/>
+      <ownedOperation xmi:id="op_Media_getTitle" name="getTitle" visibility="public"/>
+      <ownedOperation xmi:id="op_Media_setTitle" name="setTitle" visibility="public"/>
+      <ownedOperation xmi:id="op_Media_getCategory" name="getCategory" visibility="public"/>
+      <ownedOperation xmi:id="op_Media_setCategory" name="setCategory" visibility="public"/>
+      <ownedOperation xmi:id="op_Media_getCost" name="getCost" visibility="public"/>
+      <ownedOperation xmi:id="op_Media_setCost" name="setCost" visibility="public"/>
+      <ownedOperation xmi:id="op_Media_equals" name="equals" visibility="public"/>
+      <ownedOperation xmi:id="op_Media_isMatch" name="isMatch" visibility="public"/>
+    </packagedElement>
+
+    <packagedElement xmi:type="uml:Class" xmi:id="class_Disc" name="Disc">
+      <ownedAttribute xmi:id="attr_Disc_director" name="director" type="type_String" visibility="private"/>
+      <ownedAttribute xmi:id="attr_Disc_length" name="length" type="type_int" visibility="private"/>
+      <ownedOperation xmi:id="op_Disc_getDirector" name="getDirector" visibility="public"/>
+      <ownedOperation xmi:id="op_Disc_setDirector" name="setDirector" visibility="public"/>
+      <ownedOperation xmi:id="op_Disc_getLength" name="getLength" visibility="public"/>
+      <ownedOperation xmi:id="op_Disc_setLength" name="setLength" visibility="public"/>
+    </packagedElement>
+
+    <packagedElement xmi:type="uml:Class" xmi:id="class_DigitalVideoDisc" name="DigitalVideoDisc">
+      <ownedOperation xmi:id="op_DVD_ctor1" name="DigitalVideoDisc(String title)" visibility="public"/>
+      <ownedOperation xmi:id="op_DVD_ctor2" name="DigitalVideoDisc(String title, String category, float cost)" visibility="public"/>
+      <ownedOperation xmi:id="op_DVD_ctor3" name="DigitalVideoDisc(String title, String category, String director, float cost)" visibility="public"/>
+      <ownedOperation xmi:id="op_DVD_ctor4" name="DigitalVideoDisc(String title, String category, String director, int length, float cost)" visibility="public"/>
+      <ownedOperation xmi:id="op_DVD_play" name="play" visibility="public"/>
+    </packagedElement>
+
+    <packagedElement xmi:type="uml:Class" xmi:id="class_CompactDisc" name="CompactDisc">
+      <ownedAttribute xmi:id="attr_CD_artist" name="artist" type="type_String" visibility="private"/>
+      <ownedAttribute xmi:id="attr_CD_tracks" name="tracks" type="type_String" visibility="private"/>
+      <ownedOperation xmi:id="op_CD_getArtist" name="getArtist" visibility="public"/>
+      <ownedOperation xmi:id="op_CD_addTrack" name="addTrack" visibility="public"/>
+      <ownedOperation xmi:id="op_CD_removeTrack" name="removeTrack" visibility="public"/>
+      <ownedOperation xmi:id="op_CD_getLength" name="getLength" visibility="public"/>
+      <ownedOperation xmi:id="op_CD_play" name="play" visibility="public"/>
+    </packagedElement>
+
+    <packagedElement xmi:type="uml:Class" xmi:id="class_Book" name="Book">
+      <ownedAttribute xmi:id="attr_Book_authors" name="authors" type="type_String" visibility="private"/>
+      <ownedOperation xmi:id="op_Book_addAuthor" name="addAuthor" visibility="public"/>
+      <ownedOperation xmi:id="op_Book_removeAuthor" name="removeAuthor" visibility="public"/>
+    </packagedElement>
+
+    <packagedElement xmi:type="uml:Class" xmi:id="class_Track" name="Track">
+      <ownedAttribute xmi:id="attr_Track_title" name="title" type="type_String" visibility="private"/>
+      <ownedAttribute xmi:id="attr_Track_length" name="length" type="type_int" visibility="private"/>
+      <ownedOperation xmi:id="op_Track_getTitle" name="getTitle" visibility="public"/>
+      <ownedOperation xmi:id="op_Track_getLength" name="getLength" visibility="public"/>
+      <ownedOperation xmi:id="op_Track_play" name="play" visibility="public"/>
+    </packagedElement>
+
+    <packagedElement xmi:type="uml:Class" xmi:id="class_Cart" name="Cart">
+      <ownedAttribute xmi:id="attr_Cart_itemsOrdered" name="itemsOrdered" type="class_Media" visibility="private"/>
+      <ownedOperation xmi:id="op_Cart_addMedia" name="addMedia" visibility="public"/>
+      <ownedOperation xmi:id="op_Cart_removeMedia" name="removeMedia" visibility="public"/>
+      <ownedOperation xmi:id="op_Cart_totalCost" name="totalCost" visibility="public"/>
+      <ownedOperation xmi:id="op_Cart_print" name="print" visibility="public"/>
+      <ownedOperation xmi:id="op_Cart_searchById" name="searchById" visibility="public"/>
+      <ownedOperation xmi:id="op_Cart_searchByTitle" name="searchByTitle" visibility="public"/>
+    </packagedElement>
+
+    <packagedElement xmi:type="uml:Class" xmi:id="class_Store" name="Store">
+      <ownedAttribute xmi:id="attr_Store_itemsInStore" name="itemsInStore" type="class_Media" visibility="private"/>
+      <ownedOperation xmi:id="op_Store_addMedia" name="addMedia" visibility="public"/>
+      <ownedOperation xmi:id="op_Store_removeMedia" name="removeMedia" visibility="public"/>
+      <ownedOperation xmi:id="op_Store_getItemsInStore" name="getItemsInStore" visibility="public"/>
+    </packagedElement>
+
+    <packagedElement xmi:type="uml:Generalization" xmi:id="gen_Disc_Media" general="class_Media" specific="class_Disc"/>
+    <packagedElement xmi:type="uml:Generalization" xmi:id="gen_DVD_Disc" general="class_Disc" specific="class_DigitalVideoDisc"/>
+    <packagedElement xmi:type="uml:Generalization" xmi:id="gen_CD_Disc" general="class_Disc" specific="class_CompactDisc"/>
+    <packagedElement xmi:type="uml:Generalization" xmi:id="gen_Book_Media" general="class_Media" specific="class_Book"/>
+
+    <packagedElement xmi:type="uml:Dependency" xmi:id="dep_DVD_Playable" client="class_DigitalVideoDisc" supplier="interface_Playable"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="dep_CD_Playable" client="class_CompactDisc" supplier="interface_Playable"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="dep_Track_Playable" client="class_Track" supplier="interface_Playable"/>
+
+    <packagedElement xmi:type="uml:Association" xmi:id="assoc_Cart_Media" memberEnd="end_Cart_itemsOrdered end_Media_inCart">
+      <ownedEnd xmi:id="end_Cart_itemsOrdered" name="itemsOrdered" type="class_Media" lower="0" upper="*" visibility="private"/>
+      <ownedEnd xmi:id="end_Media_inCart" name="cart" type="class_Cart" lower="0" upper="1" visibility="private"/>
+    </packagedElement>
+
+    <packagedElement xmi:type="uml:Association" xmi:id="assoc_Store_Media" memberEnd="end_Store_itemsInStore end_Media_inStore">
+      <ownedEnd xmi:id="end_Store_itemsInStore" name="itemsInStore" type="class_Media" lower="0" upper="*" visibility="private"/>
+      <ownedEnd xmi:id="end_Media_inStore" name="store" type="class_Store" lower="0" upper="1" visibility="private"/>
+    </packagedElement>
+  </uml:Model>
+</XMI>

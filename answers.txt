@@ -1,0 +1,112 @@
+============================================================
+  LAB 05 - GUI PROGRAMMING: ANSWERS & PROJECT SUMMARY
+============================================================
+
+------------------------------------------------------------
+QUESTION 1: Difference between AWT and Swing containers
+------------------------------------------------------------
+In AWT, the top-level container is Frame. Components (Label,
+TextField, Button, etc.) are added DIRECTLY to the Frame itself.
+
+In Swing, the top-level container is JFrame. Lightweight
+components (JLabel, JTextField, JButton, etc., all prefixed
+with 'J') must be added to the JFrame's CONTENT PANE via
+getContentPane(), NOT directly to the JFrame.
+
+Key differences:
+  - AWT components: heavyweight (native OS peers).
+  - Swing components: lightweight (drawn by Java, not the OS).
+  - Swing components all start with 'J' (JLabel vs Label, etc.).
+  - Swing uses Content Pane as the main container; AWT does not.
+
+------------------------------------------------------------
+QUESTION 2: What happens when a checked exception is NOT caught?
+------------------------------------------------------------
+PlayerException is a CHECKED exception (extends Exception).
+
+If a method calls play() — which declares "throws PlayerException"
+— without either:
+  (a) surrounding the call with try { ... } catch (PlayerException e)
+  (b) declaring "throws PlayerException" on the calling method's
+      own signature,
+
+...the Java COMPILER will raise a COMPILE-TIME ERROR and refuse
+to build the program. The program cannot run at all.
+
+This is the fundamental difference from unchecked exceptions
+(RuntimeException subclasses), which the compiler does NOT force
+you to handle.
+
+------------------------------------------------------------
+QUESTION 3: equals() implementation in Media.java
+------------------------------------------------------------
+The correct, safe implementation is:
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;               // null guard
+        if (!(obj instanceof Media)) return false;   // type guard → avoids ClassCastException
+        Media other = (Media) obj;
+        if (this.title == null) return other.getTitle() == null;
+        return this.title.equals(other.getTitle());  // avoids NullPointerException
+    }
+
+Using try-catch(NullPointerException) to control flow is an
+anti-pattern and has been replaced by explicit null checks above.
+
+------------------------------------------------------------
+QUESTION 4: Play button exception handling in the GUI
+------------------------------------------------------------
+Both GUI surfaces handle PlayerException as follows:
+
+  [Swing - MediaStore.java]
+    btnPlay.addActionListener(e -> {
+        try {
+            ((Playable) media).play();
+            // show JDialog if successful
+        } catch (PlayerException ex) {
+            JOptionPane.showMessageDialog(null,
+                ex.getMessage(),
+                "Illegal Media Length",
+                JOptionPane.ERROR_MESSAGE);
+        }
+    });
+
+  [JavaFX - CartScreenController.java]
+    try {
+        ((Playable) selectedMedia).play();
+    } catch (PlayerException e) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Illegal Media Length");
+        alert.setContentText(e.getMessage());
+        alert.showAndWait();
+    }
+
+------------------------------------------------------------
+PROJECT FILE SUMMARY (Lab 05 – All Phases)
+------------------------------------------------------------
+GUIProject/
+  src/hust/soict/dsai/swing/
+    SwingAccumulator.java   Phase 1 – JFrame with GridLayout accumulator
+    NumberGrid.java         Phase 2 – JFrame with GridLayout number pad
+
+AimsProject/
+  src/
+    hust.soict.dsai.aims.exception/
+      PlayerException.java  Phase 5 – Custom checked exception
+
+    hust.soict.dsai.aims.media/
+      Playable.java         Updated – play() throws PlayerException
+      Track.java            Updated – play() validates length
+      DigitalVideoDisc.java Updated – play() validates length
+      CompactDisc.java      Updated – play() validates length + propagates
+      Media.java            Updated – equals() with null/instanceof guards
+
+    hust.soict.dsai.aims.screen/
+      MediaStore.java       Phase 3 – JPanel cell; Play catches PlayerException
+      StoreScreen.java      Phase 3 – JFrame store screen with menu + grid
+      cart.fxml             Phase 4 – JavaFX FXML layout for Cart screen
+      CartScreenController.java  Phase 4+5 – FX controller; Play catches PlayerException
+      CartScreen.java       Phase 4 – Swing JFrame embedding JavaFX via JFXPanel
+
+============================================================
