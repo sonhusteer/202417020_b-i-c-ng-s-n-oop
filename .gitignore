@@ -1,0 +1,19 @@
+# Compiled class files
+bin/
+target/
+*.class
+
+# Eclipse IDE files
+.settings/
+.project
+.classpath
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Assignment instructions
+*.pdf
